@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #05070a;
+  --bg-secondary: #090d16;
+  --bg-tertiary: #0e1424;
+  --accent-gold: #c9a86a;
+  --accent-gold-light: #f3dfb2;
+  --accent-gold-dark: #96763a;
+  --accent-blue: #00e5ff;
+  --accent-blue-deep: #2563eb;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-gold: rgba(201, 168, 106, 0.25);
+  --font-heading: var(--font-cinzel), serif;
+  --font-sans: var(--font-outfit), sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  selection-background-color: rgba(201, 168, 106, 0.3);
+  selection-color: #ffffff;
+}
+
+::selection {
+  background: rgba(201, 168, 106, 0.35);
+  color: #ffffff;
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05070a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 106, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 106, 0.5);
+}
+
+/* Typography Utilities */
+.font-editorial {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+.font-sans-modern {
+  font-family: var(--font-sans);
+}
+
+/* Gold Gradient Effects */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #f6e6c4 40%, #c9a86a 75%, #9b793d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-text-subtle {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #c9a86a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 45%, #00e5ff 85%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(135deg, rgba(201, 168, 106, 0.4), rgba(255, 255, 255, 0.05)) 1;
+}
+
+/* Premium Glassmorphism */
+.glass-panel {
+  background: rgba(9, 13, 22, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(14, 20, 36, 0.85);
+  border-color: rgba(201, 168, 106, 0.3);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 30px -10px rgba(201, 168, 106, 0.15);
+}
+
+.glass-panel-gold {
+  background: rgba(15, 20, 32, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 168, 106, 0.2);
+}
+
+/* Subtle Global Coordinate Grid */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 30%, rgba(201, 168, 106, 0.08) 0%, rgba(0, 229, 255, 0.04) 35%, transparent 70%);
+}
+
+/* Custom Cursor Rules */
+@media (pointer: coarse) {
+  .custom-cursor-element {
+    display: none !important;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
