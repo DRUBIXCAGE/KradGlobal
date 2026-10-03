@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ChevronLeft, ChevronRight, X, CheckCircle2, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, X, CheckCircle2, ArrowRight, ExternalLink, Globe, MapPin } from "lucide-react";
 import { BUSINESS_VERTICALS, BusinessVertical } from "@/data/content";
 
 export default function BusinessVerticals() {
@@ -37,7 +38,7 @@ export default function BusinessVerticals() {
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle,_rgba(201,168,106,0.07)_0%,_transparent_70%)] pointer-events-none blur-3xl" />
       <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-[radial-gradient(circle,_rgba(0,229,255,0.04)_0%,_transparent_70%)] pointer-events-none blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
@@ -89,7 +90,7 @@ export default function BusinessVerticals() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative h-[480px] rounded-sm overflow-hidden border border-white/10 hover:border-[#c9a86a]/50 transition-all duration-500 flex flex-col justify-between p-8 bg-[#090d16] hover:shadow-[0_20px_40px_rgba(0,0,0,0.8),_0_0_30px_rgba(201,168,106,0.15)] cursor-pointer"
+                className="group card-interactive relative h-[480px] rounded-sm overflow-hidden border border-white/10 hover:border-[#c9a86a]/50 transition-all duration-500 flex flex-col justify-between p-8 bg-[#090d16] cursor-pointer"
                 onClick={() => setSelectedVertical(vertical)}
               >
                 {/* Background Image with Zoom on Hover */}
@@ -101,11 +102,17 @@ export default function BusinessVerticals() {
                 {/* Dark Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#05070a] via-[#05070a]/80 to-transparent pointer-events-none" />
 
-                {/* Top Content: Number & Arrow */}
+                {/* Top Content: Number, Country & Quick Link */}
                 <div className="relative z-10 flex items-start justify-between">
-                  <span className="font-editorial text-4xl sm:text-5xl font-light text-white/30 group-hover:text-[#c9a86a] transition-colors duration-300">
-                    {vertical.number}
-                  </span>
+                  <div className="flex flex-col">
+                    <span className="font-editorial text-4xl sm:text-5xl font-light text-white/30 group-hover:text-[#c9a86a] transition-colors duration-300">
+                      {vertical.number}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-slate-400 mt-1">
+                      <MapPin className="w-2.5 h-2.5 text-[#00e5ff]" />
+                      <span>{vertical.country}</span>
+                    </span>
+                  </div>
 
                   <div className="w-10 h-10 rounded-full border border-white/20 bg-black/40 backdrop-blur-md flex items-center justify-center text-slate-300 group-hover:text-[#05070a] group-hover:bg-[#c9a86a] group-hover:border-[#c9a86a] transition-all duration-300 group-hover:rotate-45">
                     <ArrowUpRight className="w-4 h-4" />
@@ -126,9 +133,14 @@ export default function BusinessVerticals() {
                     {vertical.shortDescription}
                   </p>
 
-                  <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.16em] text-[#c9a86a]">
-                    <span>Explore Capabilities</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.16em]">
+                    <span className="text-slate-400 group-hover:text-white transition-colors">
+                      Quick View Modal
+                    </span>
+                    <span className="text-[#c9a86a] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                      <span>Explore Dossier</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -224,19 +236,41 @@ export default function BusinessVerticals() {
               </div>
 
               {/* Action Buttons */}
-              <div className="mt-10 flex flex-wrap items-center justify-end gap-4 pt-6 border-t border-white/10">
-                <button
-                  onClick={() => setSelectedVertical(null)}
-                  className="px-5 py-2.5 rounded-sm border border-white/15 text-xs uppercase tracking-wider text-slate-300 hover:text-white transition-colors"
-                >
-                  Close
-                </button>
-                <button
-                  onClick={() => handleInquire(selectedVertical.title)}
-                  className="px-6 py-2.5 rounded-sm bg-gradient-to-r from-[#c9a86a] to-[#b89555] text-[#05070a] font-bold text-xs uppercase tracking-[0.16em] hover:shadow-[0_0_20px_rgba(201,168,106,0.4)] transition-all"
-                >
-                  Inquire About This Vertical
-                </button>
+              <div className="mt-10 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href={selectedVertical.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-sm border border-white/20 hover:border-[#c9a86a] bg-white/[0.03] text-xs font-semibold uppercase tracking-[0.16em] text-slate-200 hover:text-white transition-all"
+                  >
+                    <span>Website</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-[#c9a86a]" />
+                  </a>
+
+                  <Link
+                    href={`/endeavours/${selectedVertical.id}`}
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-sm border border-[#c9a86a]/60 bg-[#c9a86a]/15 hover:bg-[#c9a86a]/25 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-all"
+                  >
+                    <span>Dedicated Page & Team</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#c9a86a]" />
+                  </Link>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setSelectedVertical(null)}
+                    className="px-5 py-2.5 rounded-sm border border-white/15 text-xs uppercase tracking-wider text-slate-300 hover:text-white transition-colors"
+                  >
+                    Close
+                  </button>
+                  <button
+                    onClick={() => handleInquire(selectedVertical.title)}
+                    className="px-6 py-2.5 rounded-sm bg-gradient-to-r from-[#c9a86a] to-[#b89555] text-[#05070a] font-bold text-xs uppercase tracking-[0.16em] hover:shadow-[0_0_20px_rgba(201,168,106,0.4)] transition-all"
+                  >
+                    Inquire
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>

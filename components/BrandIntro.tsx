@@ -18,7 +18,7 @@ export default function BrandIntro() {
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-[radial-gradient(circle,_rgba(201,168,106,0.06)_0%,_transparent_70%)] pointer-events-none blur-3xl" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-[radial-gradient(circle,_rgba(0,229,255,0.04)_0%,_transparent_70%)] pointer-events-none blur-3xl" />
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Section Tag */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ export default function BrandIntro() {
         </motion.h2>
 
         {/* Animated Editorial Body with Highlighted Words */}
-        <div className="mt-10 md:mt-14 max-w-5xl">
+        <div className="mt-10 md:mt-14 w-full">
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-slate-300 font-light leading-relaxed flex flex-wrap gap-x-2.5 gap-y-2">
             {words.map((word, index) => {
               // Clean punctuation for keyword matching

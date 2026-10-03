@@ -15,7 +15,7 @@ export default function MarketStory() {
       className="relative py-28 md:py-36 bg-[#070a12] border-t border-white/[0.06] overflow-hidden"
       aria-label="Tri-Continental Strategic Story"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>

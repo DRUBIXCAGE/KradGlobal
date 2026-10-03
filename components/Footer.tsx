@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { ArrowUp, Globe, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -38,7 +39,7 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-[#030407] border-t border-white/10 text-white pt-20 pb-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20">
         {/* Top Tier: Brand, Tagline & Scroll To Top */}
         <div className="flex flex-col md:flex-row md:items-center justify-between pb-16 border-b border-white/10 gap-8">
           <div>
@@ -77,63 +78,68 @@ export default function Footer() {
             </span>
             <ul className="space-y-2.5 text-slate-400">
               <li>
-                <a href="#about" className="hover:text-white transition-colors">
-                  About
-                </a>
+                <Link href="/about" className="hover:text-white transition-colors">
+                  About Group
+                </Link>
               </li>
               <li>
-                <a href="#businesses" className="hover:text-white transition-colors">
-                  Businesses
-                </a>
+                <Link href="/endeavours" className="hover:text-white transition-colors">
+                  All Endeavours
+                </Link>
               </li>
               <li>
-                <a href="#presence" className="hover:text-white transition-colors">
+                <Link href="/presence" className="hover:text-white transition-colors">
                   Global Presence
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#insights" className="hover:text-white transition-colors">
-                  Insights
-                </a>
+                <Link href="/insights" className="hover:text-white transition-colors">
+                  Market Insights
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors">
-                  Contact
-                </a>
+                <Link href="/contact" className="hover:text-white transition-colors">
+                  Commercial Contact
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 2: Business */}
+          {/* Column 2: Business Endeavours */}
           <div className="flex flex-col gap-4">
             <span className="text-[11px] uppercase tracking-[0.25em] text-[#c9a86a] font-semibold">
-              Business
+              Endeavours
             </span>
             <ul className="space-y-2.5 text-slate-400">
               <li>
-                <a href="#businesses" className="hover:text-white transition-colors">
-                  Travel & Mobility
-                </a>
+                <Link href="/endeavours/global-travel" className="hover:text-white transition-colors">
+                  01 // Global Travel
+                </Link>
               </li>
               <li>
-                <a href="#businesses" className="hover:text-white transition-colors">
-                  Import & Export
-                </a>
+                <Link href="/endeavours/import-export" className="hover:text-white transition-colors">
+                  02 // Import & Export
+                </Link>
               </li>
               <li>
-                <a href="#businesses" className="hover:text-white transition-colors">
-                  Trading
-                </a>
+                <Link href="/endeavours/global-trading" className="hover:text-white transition-colors">
+                  03 // Global Trading
+                </Link>
               </li>
               <li>
-                <a href="#businesses" className="hover:text-white transition-colors">
-                  Digital Commerce
-                </a>
+                <Link href="/endeavours/digital-commerce" className="hover:text-white transition-colors">
+                  04 // Digital Commerce
+                </Link>
               </li>
               <li>
-                <a href="#businesses" className="hover:text-white transition-colors">
-                  Partnerships
-                </a>
+                <Link href="/endeavours/business-solutions" className="hover:text-white transition-colors">
+                  05 // Business Solutions
+                </Link>
+              </li>
+              <li>
+                <Link href="/endeavours/future-ventures" className="hover:text-white transition-colors">
+                  06 // Future Ventures
+                </Link>
               </li>
             </ul>
           </div>
@@ -141,28 +147,28 @@ export default function Footer() {
           {/* Column 3: Global Presence */}
           <div className="flex flex-col gap-4">
             <span className="text-[11px] uppercase tracking-[0.25em] text-[#c9a86a] font-semibold">
-              Global Presence
+              Operating Hubs
             </span>
             <ul className="space-y-2.5 text-slate-400">
               <li>
-                <a href="#presence" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span>🇮🇳</span> India
-                </a>
+                <Link href="/presence#india" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <span>🇮🇳</span> Mumbai & Delhi, India
+                </Link>
               </li>
               <li>
-                <a href="#presence" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span>🇦🇪</span> UAE
-                </a>
+                <Link href="/presence#uae" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <span>🇦🇪</span> DIFC / Dubai, UAE
+                </Link>
               </li>
               <li>
-                <a href="#presence" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span>🇺🇸</span> USA
-                </a>
+                <Link href="/presence#usa" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <span>🇺🇸</span> New York & Delaware, USA
+                </Link>
               </li>
               <li>
-                <a href="#presence" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span>🌐</span> Global Markets
-                </a>
+                <Link href="/presence" className="hover:text-[#c9a86a] transition-colors flex items-center gap-1.5 font-medium">
+                  <span>🌐</span> View Corridors Map →
+                </Link>
               </li>
             </ul>
           </div>

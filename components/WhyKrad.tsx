@@ -30,7 +30,7 @@ export default function WhyKrad() {
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(201,168,106,0.05)_0%,_transparent_70%)] pointer-events-none blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Editorial Section Header */}
         <div className="max-w-3xl mb-20">
           <div className="flex items-center gap-3 mb-4">

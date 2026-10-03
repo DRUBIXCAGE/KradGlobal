@@ -340,7 +340,7 @@ export default function Hero() {
       </div>
 
       {/* Main Content Layout */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col justify-between min-h-[85vh]">
+      <div className="relative z-10 w-full px-6 md:px-12 lg:px-16 xl:px-20 flex flex-col justify-between min-h-[85vh]">
         {/* Top Corridor Status Pill */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

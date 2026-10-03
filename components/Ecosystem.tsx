@@ -20,7 +20,7 @@ export default function Ecosystem() {
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[radial-gradient(circle,_rgba(201,168,106,0.08)_0%,_rgba(0,229,255,0.04)_40%,_transparent_70%)] pointer-events-none blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-3 mb-4">

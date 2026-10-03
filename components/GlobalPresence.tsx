@@ -61,7 +61,7 @@ export default function GlobalPresence() {
       {/* Background ambient light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(0,229,255,0.04)_0%,_rgba(201,168,106,0.05)_40%,_transparent_75%)] pointer-events-none blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="flex items-center gap-3 mb-4">
@@ -84,26 +84,39 @@ export default function GlobalPresence() {
 
         {/* Qualitative Strategic Metrics Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
-          {COMPANY_DATA.globalStats.map((stat, idx) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-6 rounded-sm border border-white/10 bg-white/[0.02] backdrop-blur-md hover:border-[#c9a86a]/40 transition-colors"
-            >
-              <div className="font-editorial text-3xl sm:text-4xl md:text-5xl font-bold gold-gradient-text mb-2">
-                {stat.metric}
-              </div>
-              <div className="text-xs uppercase tracking-[0.2em] text-white font-semibold mb-2">
-                {stat.label}
-              </div>
-              <p className="text-xs text-slate-400 font-light leading-relaxed">
-                {stat.description}
-              </p>
-            </motion.div>
-          ))}
+          {COMPANY_DATA.globalStats.map((stat, idx) => {
+            // Dynamic text sizing based on metric character length so words like MULTIPLE and INTERNATIONAL never get trimmed
+            const getMetricSize = (str: string) => {
+              const len = str.length;
+              if (len >= 12) return "text-xl sm:text-2xl lg:text-[1.35rem] xl:text-2xl 2xl:text-3xl";
+              if (len >= 8) return "text-2xl sm:text-3xl lg:text-[1.75rem] xl:text-3xl 2xl:text-4xl";
+              if (len >= 6) return "text-2xl sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl";
+              return "text-3xl sm:text-4xl lg:text-5xl";
+            };
+
+            return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="p-5 sm:p-6 rounded-sm border border-white/10 bg-white/[0.02] backdrop-blur-md hover:border-[#c9a86a]/40 transition-all duration-300 flex flex-col justify-between min-w-0"
+              >
+                <div>
+                  <div className={`font-editorial font-bold gold-gradient-text mb-2 tracking-normal leading-tight break-normal overflow-visible ${getMetricSize(stat.metric)}`}>
+                    {stat.metric}
+                  </div>
+                  <div className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white font-semibold mb-2">
+                    {stat.label}
+                  </div>
+                </div>
+                <p className="text-xs text-slate-400 font-light leading-relaxed">
+                  {stat.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Interactive World Map Canvas / SVG Container */}

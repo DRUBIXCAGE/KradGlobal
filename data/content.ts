@@ -1,10 +1,37 @@
+export interface TeamMember {
+  name: string;
+  role: string;
+  country: string;
+  bio: string;
+  email?: string;
+  avatarInitial?: string;
+  linkedin?: string;
+}
+
+export interface BusinessDetails {
+  summary: string;
+  scopeOfOperations: string[];
+  keyServices: {
+    name: string;
+    description: string;
+  }[];
+  tradeCorridors: string[];
+  compliance: string[];
+}
+
 export interface BusinessVertical {
   id: string;
   number: string;
+  order: number;
+  country: string;
+  operationalHubs: string[];
+  websiteUrl: string;
   title: string;
   tagline: string;
   shortDescription: string;
   fullDescription: string;
+  businessDetails: BusinessDetails;
+  teamMembers: TeamMember[];
   keyPillars: string[];
   metrics: { label: string; value: string }[];
   image: string;
@@ -159,12 +186,83 @@ export const BUSINESS_VERTICALS: BusinessVertical[] = [
   {
     id: "global-travel",
     number: "01",
+    order: 1,
+    country: "United Arab Emirates & India",
+    operationalHubs: ["Dubai (DIFC) - UAE", "Mumbai (BKC) - India", "New York (Manhattan) - USA"],
+    // USER CONFIGURATION: Replace with your actual individual website URL for Global Travel
+    websiteUrl: "https://travel.kradglobal.com",
     title: "GLOBAL TRAVEL",
     tagline: "Curated International Mobility & Experiential Tourism",
     shortDescription:
       "International travel solutions, corporate mobility, luxury tourism, experiences and high-touch global travel services.",
     fullDescription:
       "Our Global Travel division redefines high-end corporate voyages, customized international luxury leisure, bespoke delegations, and cross-border mobility. Positioned as a dedicated premium service, we coordinate high-security executive itineraries, specialized private aviation arrangements, visa facilitation, and luxury destination management across key worldwide corridors.",
+    businessDetails: {
+      summary:
+        "High-touch executive mobility, bespoke corporate missions, and bespoke luxury tourism connecting South Asia, the GCC, North America, and Europe with 24/7 dedicated concierge coverage.",
+      scopeOfOperations: [
+        "Executive Business Travel & Corporate Account Management",
+        "Diplomatic & VIP Trade Delegation Logistics",
+        "Bespoke Luxury Destination Experiences & Private Retreats",
+        "Private Aviation Charters & High-Security Ground Transit",
+        "Fast-Track Visa, Immigration & Border Protocol Facilitation",
+      ],
+      keyServices: [
+        {
+          name: "Corporate Executive Mobility",
+          description: "End-to-end flight management, premium accommodation, and 24/7 route disruption mitigation for corporate executives.",
+        },
+        {
+          name: "Experiential Luxury Tourism",
+          description: "Curated private journeys across the Emirates, European cultural hubs, Southeast Asia, and private island retreats.",
+        },
+        {
+          name: "Bilateral Trade Delegations",
+          description: "Logistical and hospitality orchestration for business councils, summits, investor roadshows, and official government delegations.",
+        },
+        {
+          name: "Aviation & Maritime Charters",
+          description: "Dedicated access to private jets, helicopters, and luxury marine vessels across the Arabian Gulf and Mediterranean.",
+        },
+      ],
+      tradeCorridors: [
+        "India → United Arab Emirates (High-Frequency Business Axis)",
+        "UAE → United Kingdom & Continental Europe",
+        "India & UAE → North America (New York, San Francisco, Miami)",
+        "GCC Cross-Border Corporate Mobility (Riyadh, Doha, Dubai)",
+      ],
+      compliance: [
+        "IATA Certified Agency Protocols",
+        "Corporate Duty of Care & Traveler Risk Management",
+        "Strict GDPR & International Privacy Standards",
+      ],
+    },
+    teamMembers: [
+      {
+        name: "[Executive Lead Name]",
+        role: "Managing Director - Global Mobility & Hospitality",
+        country: "Dubai, UAE",
+        bio: "Leads international airline relationships, VIP private aviation charters, and corporate mobility accounts across the Middle East and Asia.",
+        email: "travel.director@kradglobal.com",
+        avatarInitial: "TD",
+      },
+      {
+        name: "[Regional Partner Name]",
+        role: "Director of Inbound & Outbound Tourism",
+        country: "Mumbai, India",
+        bio: "Specializes in high-volume corporate delegations, incentive retreats, and bilateral trade delegation hospitality.",
+        email: "india.travel@kradglobal.com",
+        avatarInitial: "RD",
+      },
+      {
+        name: "[VIP Concierge Lead]",
+        role: "Head of Private Client Services",
+        country: "New York, USA",
+        bio: "Manages North American executive itineraries, bespoke luxury itineraries, and cross-Atlantic charter coordination.",
+        email: "us.concierge@kradglobal.com",
+        avatarInitial: "VC",
+      },
+    ],
     keyPillars: [
       "Executive & Corporate Travel Logistics",
       "Bespoke Luxury Destination Experiences",
@@ -183,12 +281,82 @@ export const BUSINESS_VERTICALS: BusinessVertical[] = [
   {
     id: "import-export",
     number: "02",
+    order: 2,
+    country: "India & United Arab Emirates",
+    operationalHubs: ["JNPT / Mumbai - India", "Jebel Ali Port - UAE", "Port of New York / New Jersey - USA"],
+    // USER CONFIGURATION: Replace with your actual individual website URL for Import & Export
+    websiteUrl: "https://trade.kradglobal.com",
     title: "IMPORT & EXPORT",
     tagline: "Cross-Border Goods Flow & Regulatory Navigation",
     shortDescription:
       "Connecting vetted suppliers, manufactured products and consuming markets across international borders with compliant logistics.",
     fullDescription:
       "Bridging manufacturers in emerging manufacturing powerhouses with high-demand destination economies. We engineer resilient multimodal freight lanes, handle comprehensive customs architecture, manage end-to-end documentation, and mitigate supply chain disruptions across sea and air freight routes.",
+    businessDetails: {
+      summary:
+        "Comprehensive cross-border import and export infrastructure handling industrial supplies, consumer goods, and commercial bulk commodities across leading maritime and air trade lanes.",
+      scopeOfOperations: [
+        "Multimodal Freight Forwarding (Ocean FCL/LCL & Air Freight)",
+        "End-to-End Customs Clearance & Tariffs Optimization",
+        "Vetted Manufacturer Sourcing & Pre-Shipment Inspection",
+        "Warehousing, Consolidation & Port-to-Door Delivery",
+      ],
+      keyServices: [
+        {
+          name: "Ocean & Air Freight Management",
+          description: "Contracted cargo lanes across Tier-1 shipping lines and air carriers with competitive transit times.",
+        },
+        {
+          name: "Customs Regulatory Architecture",
+          description: "Full customs classification (HS Codes), duty drawback navigation, and trade compliance clearance.",
+        },
+        {
+          name: "Cross-Border Sourcing & Inspection",
+          description: "Factory audits, material quality validation, and supply continuity assurance at the manufacturing source.",
+        },
+        {
+          name: "Bonded Warehousing & Logistics",
+          description: "Free-zone storage, consolidation hubs in Jebel Ali and Mumbai, and localized last-mile dispatch.",
+        },
+      ],
+      tradeCorridors: [
+        "India (JNPT / Mundra) → United Arab Emirates (Jebel Ali)",
+        "Middle East Hub → North America (East Coast Ports)",
+        "Southeast Asia → India & Gulf Transit Corridors",
+        "Europe → Middle East Multimodal Routes",
+      ],
+      compliance: [
+        "Incoterms 2020 Standard Operating Framework",
+        "AEO (Authorized Economic Operator) Standards",
+        "International Maritime Organization (IMO) Cargo Safety",
+      ],
+    },
+    teamMembers: [
+      {
+        name: "[Trade Operations Head]",
+        role: "Director of International Freight & Trade",
+        country: "Dubai, UAE",
+        bio: "Specializes in maritime freight contracts, cross-border shipping alliances, and Gulf customs clearance architectures.",
+        email: "freight@kradglobal.com",
+        avatarInitial: "TO",
+      },
+      {
+        name: "[Head of Sourcing & QA]",
+        role: "VP of Supplier Networks & Compliance",
+        country: "Mumbai, India",
+        bio: "Oversees manufacturer audits, quality verification laboratories, and outbound port operations across South Asia.",
+        email: "sourcing@kradglobal.com",
+        avatarInitial: "SQ",
+      },
+      {
+        name: "[Port Logistics Coordinator]",
+        role: "Chief of North American Import Logistics",
+        country: "New York, USA",
+        bio: "Directs container clearance, intermodal rail transfer, and bonded warehouse distribution for American accounts.",
+        email: "us.logistics@kradglobal.com",
+        avatarInitial: "PL",
+      },
+    ],
     keyPillars: [
       "End-to-End Customs & Regulatory Compliance",
       "Multimodal Freight & Intermodal Routing",
@@ -207,12 +375,82 @@ export const BUSINESS_VERTICALS: BusinessVertical[] = [
   {
     id: "global-trading",
     number: "03",
+    order: 3,
+    country: "United Arab Emirates & Global",
+    operationalHubs: ["Dubai (DIFC) - UAE", "Singapore", "Geneva Trade Axis"],
+    // USER CONFIGURATION: Replace with your actual individual website URL for Global Trading
+    websiteUrl: "https://trading.kradglobal.com",
     title: "GLOBAL TRADING",
     tagline: "Institutional Commodity & Commercial Distribution",
     shortDescription:
       "International sourcing, distribution, commercial brokerage and structured trading opportunities across frontier and established markets.",
     fullDescription:
       "Krad Global acts as an agile trading house, capitalizing on international price differentials, securing strategic inventory, and executing structured commercial contracts. We build long-term supply relationships backed by institutional escrow structures and sound counterparty risk protocols.",
+    businessDetails: {
+      summary:
+        "Commercial brokerage and structured commodity trading desk managing wholesale buy-sell contracts, off-take agreements, and cross-border commercial procurement.",
+      scopeOfOperations: [
+        "Bulk Commodity & Raw Material Procurement",
+        "Commercial Wholesale Brokerage & Counterparty Matching",
+        "Structured Trade Financing & Documentary Credits (LC/SBLC)",
+        "Arbitrage & Regional Price Optimization Desks",
+      ],
+      keyServices: [
+        {
+          name: "Structured Commercial Procurement",
+          description: "Negotiating direct manufacturer contracts, off-take agreements, and long-term supply quotas.",
+        },
+        {
+          name: "Trade Finance & Escrow Security",
+          description: "Structuring Letters of Credit, performance bonds, and verifiable escrow mechanisms for large-scale deals.",
+        },
+        {
+          name: "Global Price Discovery & Arbitrage",
+          description: "Capitalizing on market dislocations between Asian production hubs and Middle Eastern/Western demand centers.",
+        },
+        {
+          name: "Strategic Inventory Allocation",
+          description: "Managing buffer stocks, forward-hedged deliveries, and secure localized commodity distribution.",
+        },
+      ],
+      tradeCorridors: [
+        "Gulf Cooperation Council (GCC) Internal Distribution",
+        "South Asia ↔ Middle East Commercial Corridors",
+        "Africa Frontier Markets ↔ UAE Trading Hubs",
+        "Trans-Pacific Sourcing & Commodity Channels",
+      ],
+      compliance: [
+        "International Chamber of Commerce (ICC) Standards",
+        "Strict KYC & Anti-Money Laundering (AML) Protocols",
+        "Vetted Tier-1 Banking Relationships",
+      ],
+    },
+    teamMembers: [
+      {
+        name: "[Chief Commercial Officer]",
+        role: "Head of Global Trading & Commodities",
+        country: "Dubai, UAE",
+        bio: "Specializes in bulk commercial contracts, cross-border structured commodity finance, and international buyer negotiations.",
+        email: "trading.desk@kradglobal.com",
+        avatarInitial: "CC",
+      },
+      {
+        name: "[Senior Trading Partner]",
+        role: "Director of Wholesale & Distribution",
+        country: "Singapore",
+        bio: "Leads Asia-Pacific supplier discovery, raw material allocation, and bilateral off-take frameworks.",
+        email: "asia.trading@kradglobal.com",
+        avatarInitial: "ST",
+      },
+      {
+        name: "[Trade Finance Specialist]",
+        role: "VP of Risk & Documentary Credits",
+        country: "Geneva / Dubai",
+        bio: "Manages letters of credit, escrow verification, counterparty risk assessments, and compliance audits.",
+        email: "tradefinance@kradglobal.com",
+        avatarInitial: "TF",
+      },
+    ],
     keyPillars: [
       "Commercial Sourcing & Supplier Vetting",
       "B2B Wholesale Contracts & Off-Take Agreements",
@@ -231,12 +469,82 @@ export const BUSINESS_VERTICALS: BusinessVertical[] = [
   {
     id: "digital-commerce",
     number: "04",
+    order: 4,
+    country: "United States & United Arab Emirates",
+    operationalHubs: ["Delaware / New York - USA", "Dubai - UAE", "Shenzhen - Asia"],
+    // USER CONFIGURATION: Replace with your actual individual website URL for Digital Commerce
+    websiteUrl: "https://commerce.kradglobal.com",
     title: "DIGITAL COMMERCE",
     tagline: "Omnichannel Cross-Border Retail & Next-Gen Dropshipping",
     shortDescription:
       "Dropshipping, e-commerce infrastructure, global brand incubation and digitally enabled cross-border commerce architectures.",
     fullDescription:
       "Leveraging modern algorithm-driven demand forecasting, programmatic advertising, localized payment gateways, and overseas micro-fulfillment centers. We power agile consumer product lines and direct-to-consumer pipelines that sell globally while fulfilling locally.",
+    businessDetails: {
+      summary:
+        "High-velocity cross-border digital retail, next-gen dropshipping architectures, and direct-to-consumer brand incubation powered by proprietary software and automated fulfillment.",
+      scopeOfOperations: [
+        "Automated Multi-Channel Dropshipping Infrastructure",
+        "D2C Brand Incubation, Packaging & Intellectual Property",
+        "Cross-Border Micro-Fulfillment & 3PL Warehouse Alliances",
+        "Algorithmic Trend Forecasting & Paid Media Performance",
+      ],
+      keyServices: [
+        {
+          name: "High-Velocity Dropshipping Automation",
+          description: "End-to-end API integration between customer storefronts, supplier warehouses, and global parcel tracking.",
+        },
+        {
+          name: "Localized Fulfillment & Fast Dispatch",
+          description: "Strategic fulfillment hubs in the US, UAE, and EU guaranteeing 2-5 day domestic delivery windows.",
+        },
+        {
+          name: "Multi-Currency Checkout & Payments",
+          description: "Conversion-optimized payment stack supporting Stripe, local GCC gateways, Buy-Now-Pay-Later, and multicurrency.",
+        },
+        {
+          name: "Private Label Brand Incubation",
+          description: "Transforming winning cross-border products into institutional direct-to-consumer brands with custom packaging.",
+        },
+      ],
+      tradeCorridors: [
+        "Manufacturing Desks (Asia) → US Consumer Market (Fast Air Express)",
+        "China & India Sourcing → GCC Regional Micro-Fulfillment (Dubai Hub)",
+        "Domestic US Micro-Hubs → Nationwide Fast Dispatch",
+        "Cross-Border UK & European Digital Sales Channels",
+      ],
+      compliance: [
+        "Consumer Protection & Product Safety Standards (FCC/CE)",
+        "Payment Card Industry Data Security Standard (PCI-DSS)",
+        "Strict E-Commerce Return & Warranty Protocols",
+      ],
+    },
+    teamMembers: [
+      {
+        name: "[VP of Digital Commerce]",
+        role: "Head of E-Commerce & Growth",
+        country: "New York, USA",
+        bio: "Directs programmatic acquisition strategies, omnichannel storefront architectures, and customer lifetime value optimization.",
+        email: "commerce.lead@kradglobal.com",
+        avatarInitial: "VD",
+      },
+      {
+        name: "[Head of Supply Chain & 3PL]",
+        role: "Director of Global Micro-Fulfillment",
+        country: "Shenzhen / Dubai",
+        bio: "Specializes in automated order dispatch, factory direct-ship logistics, and real-time inventory management.",
+        email: "fulfillment@kradglobal.com",
+        avatarInitial: "HS",
+      },
+      {
+        name: "[Brand Incubation Strategist]",
+        role: "Creative Director - Digital Brands",
+        country: "Dubai, UAE",
+        bio: "Leads packaging design, consumer product positioning, and localized viral commerce creative production.",
+        email: "brands@kradglobal.com",
+        avatarInitial: "BI",
+      },
+    ],
     keyPillars: [
       "Algorithmic Product Research & Validation",
       "Automated High-Velocity Dropshipping Pipelines",
@@ -255,12 +563,82 @@ export const BUSINESS_VERTICALS: BusinessVertical[] = [
   {
     id: "business-solutions",
     number: "05",
+    order: 5,
+    country: "United Arab Emirates, India & USA",
+    operationalHubs: ["Dubai (DIFC / ADGM) - UAE", "Mumbai & New Delhi - India", "Delaware & NY - USA"],
+    // USER CONFIGURATION: Replace with your actual individual website URL for Business Solutions
+    websiteUrl: "https://solutions.kradglobal.com",
     title: "BUSINESS SOLUTIONS",
     tagline: "Corporate Market Entry & Strategic Advisory",
     shortDescription:
       "Cross-border corporate structuring, jurisdictional market entry, regional partnerships and localized operational solutions.",
     fullDescription:
       "Entering foreign jurisdictions requires nuanced regulatory navigation, local tax synchronization, banking introductions, and verified partner vetting. Krad Global's advisory arm provides turnkey solutions for enterprises expanding between the Indian subcontinent, the Middle East, and North America.",
+    businessDetails: {
+      summary:
+        "Turnkey cross-border corporate expansion advisory assisting enterprises, family offices, and emerging founders in establishing compliant operations in the UAE, India, and the United States.",
+      scopeOfOperations: [
+        "Jurisdictional Corporate Structuring & Licensing",
+        "Tier-1 Corporate Banking & Treasury Onboarding",
+        "Bilateral Tax, Regulatory & Foreign Direct Investment (FDI) Advisory",
+        "Strategic Joint Venture Brokerage & Commercial Representation",
+      ],
+      keyServices: [
+        {
+          name: "UAE Freezone & Mainland Incorporation",
+          description: "Full-service setup across DIFC, ADGM, DMCC, and Dubai Mainland including residency visas and corporate bank accounts.",
+        },
+        {
+          name: "US Corporate Structuring (LLC / C-Corp)",
+          description: "Delaware and Wyoming corporate entity structuring, EIN issuance, US banking access, and federal tax compliance.",
+        },
+        {
+          name: "India Market Entry & FDI Structuring",
+          description: "Navigating RBI regulations, FDI routes, local office setup, and joint venture vetting across Indian commercial hubs.",
+        },
+        {
+          name: "Strategic Joint Ventures & Commercial Representation",
+          description: "Acting as local corporate partners, nominative directors, and commercial advisors for foreign corporate entrants.",
+        },
+      ],
+      tradeCorridors: [
+        "India ↔ UAE Corporate Corridor (CEPA Trade Agreement)",
+        "UAE ↔ North American Investment & Expansion Channel",
+        "Europe ↔ GCC Corporate Relocation Hub",
+        "South Asia ↔ Western Markets Expansion Pipeline",
+      ],
+      compliance: [
+        "UAE Corporate Tax & Economic Substance Regulations (ESR)",
+        "US IRS Foreign National Tax Compliance Standards",
+        "Reserve Bank of India (RBI) Foreign Exchange Management Act (FEMA)",
+      ],
+    },
+    teamMembers: [
+      {
+        name: "[Managing Partner - Advisory]",
+        role: "Head of Corporate Structuring & Jurisdictions",
+        country: "Dubai, UAE",
+        bio: "Advises multinational enterprises on UAE freezone/mainland structuring, corporate taxation, and banking governance.",
+        email: "solutions@kradglobal.com",
+        avatarInitial: "MP",
+      },
+      {
+        name: "[Director of India Operations]",
+        role: "VP of Regulatory Affairs & FDI",
+        country: "Mumbai, India",
+        bio: "Specializes in cross-border inbound investment, Indian corporate compliance, and joint venture negotiation.",
+        email: "india.solutions@kradglobal.com",
+        avatarInitial: "DO",
+      },
+      {
+        name: "[Legal & US Compliance Counsel]",
+        role: "Senior Partner - North American Structuring",
+        country: "New York, USA",
+        bio: "Coordinates Delaware holding structures, federal compliance, and transatlantic commercial agreements.",
+        email: "us.advisory@kradglobal.com",
+        avatarInitial: "LC",
+      },
+    ],
     keyPillars: [
       "Cross-Border Corporate Setup & Licensing",
       "Banking & Financial Corridor Onboarding",
@@ -279,12 +657,82 @@ export const BUSINESS_VERTICALS: BusinessVertical[] = [
   {
     id: "future-ventures",
     number: "06",
+    order: 6,
+    country: "Global / Cross-Border",
+    operationalHubs: ["Dubai - UAE", "San Francisco - USA", "Bangalore - India"],
+    // USER CONFIGURATION: Replace with your actual individual website URL for Future Ventures
+    websiteUrl: "https://ventures.kradglobal.com",
     title: "FUTURE VENTURES",
     tagline: "Emerging Markets, AI Logistics & Strategic Innovation",
     shortDescription:
       "New market penetration, disruptive tech integration, green energy logistics and strategic early-stage partnerships.",
     fullDescription:
       "We continually re-invest capital and cross-border expertise into high-upside ventures. From artificial intelligence applied to predictive supply chains to next-generation fintech solutions for global cross-border remittances, our future ventures arm stays ahead of macroeconomic shifts.",
+    businessDetails: {
+      summary:
+        "Innovation incubator and strategic venture arm investing in and operationalizing cutting-edge technologies that transform cross-border commerce, supply chain automation, and fintech.",
+      scopeOfOperations: [
+        "AI Supply Chain Optimization & Autonomous Logistics",
+        "Cross-Border Fintech & Multi-Currency Settlement Protocols",
+        "Clean Logistics & Sustainable Freight Initiatives",
+        "Early-Stage Incubation & Strategic Capital Deployment",
+      ],
+      keyServices: [
+        {
+          name: "Predictive AI Trade Intelligence",
+          description: "Machine learning systems predicting shipping bottle-necks, customs delays, and commodity pricing fluctuations.",
+        },
+        {
+          name: "Next-Gen Fintech Remittance Infrastructure",
+          description: "Accelerating same-day cross-border B2B payouts, institutional stablecoin settlement, and currency hedging.",
+        },
+        {
+          name: "Sustainable Green Freight Partnerships",
+          description: "Piloting carbon-offset ocean transit and electric last-mile delivery alliances across key metropolitan hubs.",
+        },
+        {
+          name: "Strategic Venture Incubation",
+          description: "Providing capital, direct commercial access, and regulatory sponsorship for breakthrough global startups.",
+        },
+      ],
+      tradeCorridors: [
+        "Silicon Valley ↔ Dubai Tech & Capital Corridor",
+        "Bangalore Technology Hub ↔ Global Deployment Desks",
+        "Trans-Pacific Digital Innovation & AI Corridors",
+        "Global Emerging Frontiers & Green Energy Corridors",
+      ],
+      compliance: [
+        "Venture Capital & Regulatory Sandbox Standards",
+        "International ESG (Environmental, Social, Governance) Frameworks",
+        "Intellectual Property & Patent Protection across Tri-Continent Nodes",
+      ],
+    },
+    teamMembers: [
+      {
+        name: "[Head of Ventures & Innovation]",
+        role: "Chief Innovation Officer & General Partner",
+        country: "Dubai / San Francisco",
+        bio: "Directs technology incubation, venture alliances, and strategic capital allocation across AI, fintech, and supply chain automation.",
+        email: "ventures@kradglobal.com",
+        avatarInitial: "HV",
+      },
+      {
+        name: "[AI & Logistics Architect]",
+        role: "VP of Applied Technologies",
+        country: "Bangalore, India",
+        bio: "Specializes in machine learning models for predictive routing, freight optimization, and automated commerce software.",
+        email: "tech@kradglobal.com",
+        avatarInitial: "AL",
+      },
+      {
+        name: "[Strategic Partnerships Lead]",
+        role: "Director of Global Startup Alliances",
+        country: "San Francisco, USA",
+        bio: "Connects breakthrough technology founders with Krad Global's physical trade corridors and institutional distribution.",
+        email: "partnerships@kradglobal.com",
+        avatarInitial: "SP",
+      },
+    ],
     keyPillars: [
       "AI-Powered Supply Chain Intelligence",
       "Green & Sustainable Freight Initiatives",
@@ -558,3 +1006,11 @@ export const INSIGHTS_ARTICLES: InsightArticle[] = [
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
   },
 ];
+
+export function getEndeavourBySlug(slug: string): BusinessVertical | undefined {
+  return BUSINESS_VERTICALS.find((v) => v.id === slug);
+}
+
+export function getAllEndeavours(): BusinessVertical[] {
+  return [...BUSINESS_VERTICALS].sort((a, b) => a.order - b.order);
+}

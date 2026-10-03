@@ -42,7 +42,7 @@ export default function Vision() {
       {/* Atmospheric center aura */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(201,168,106,0.06)_0%,_rgba(0,229,255,0.03)_50%,_transparent_75%)] pointer-events-none blur-3xl" />
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10 text-center">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 relative z-10 text-center">
         {/* Tag */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

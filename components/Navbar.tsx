@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X, Globe, MessageSquare } from "lucide-react";
 
@@ -10,19 +12,18 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Businesses", href: "#businesses" },
-  { name: "Global Presence", href: "#presence" },
-  { name: "Ecosystem", href: "#ecosystem" },
-  { name: "Insights", href: "#insights" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Endeavours", href: "/endeavours" },
+  { name: "Global Presence", href: "/presence" },
+  { name: "Insights", href: "/insights" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,51 +32,25 @@ export default function Navbar() {
       } else {
         setIsScrolled(false);
       }
-
-      // Track active section for indicator
-      const sections = NAV_ITEMS.map((item) => item.href.substring(1));
-      const scrollPosition = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           isScrolled
-            ? "py-3.5 bg-[#05070a]/80 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
-            : "py-6 bg-transparent"
+            ? "py-3.5 bg-transparent backdrop-blur-sm border-b border-transparent shadow-none"
+            : "py-5 bg-[#05070a] border-b border-white/[0.08] shadow-[0_4px_25px_rgba(0,0,0,0.6)]"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 flex items-center justify-between">
           {/* Brand Logo */}
-          <a
-            href="#hero"
-            onClick={(e) => scrollToSection(e, "#hero")}
+          <Link
+            href="/"
             className="group flex items-center gap-3 select-none"
             aria-label="Krad Global Home"
           >
@@ -94,17 +69,20 @@ export default function Navbar() {
                 INDIA • UAE • USA
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
             {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname?.startsWith(item.href);
+
               return (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => scrollToSection(e, item.href)}
                   className={`relative text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:text-white py-1 ${
                     isActive ? "text-[#c9a86a] font-medium" : "text-slate-300"
                   }`}
@@ -117,7 +95,7 @@ export default function Navbar() {
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
-                </a>
+                </Link>
               );
             })}
           </nav>
@@ -130,14 +108,13 @@ export default function Navbar() {
               <span className="text-slate-200 font-medium">Active</span>
             </div>
 
-            <a
-              href="#contact"
-              onClick={(e) => scrollToSection(e, "#contact")}
+            <Link
+              href="/contact"
               className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-sm border border-[#c9a86a]/60 bg-gradient-to-r from-[#c9a86a]/15 to-[#c9a86a]/5 hover:from-[#c9a86a]/30 hover:to-[#c9a86a]/15 text-xs font-semibold uppercase tracking-[0.16em] text-[#f8fafc] transition-all duration-300 group hover:shadow-[0_0_20px_rgba(201,168,106,0.35)] hover:border-[#c9a86a]"
             >
               <span>Let&apos;s Connect</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-[#c9a86a] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -168,20 +145,32 @@ export default function Navbar() {
               </span>
 
               <nav className="flex flex-col gap-5">
-                {NAV_ITEMS.map((item, idx) => (
-                  <motion.a
-                    key={item.name}
-                    href={item.href}
-                    onClick={(e) => scrollToSection(e, item.href)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * idx, duration: 0.3 }}
-                    className="flex items-center justify-between text-xl font-editorial tracking-[0.1em] text-slate-200 hover:text-[#c9a86a] border-b border-white/5 pb-3 transition-colors"
-                  >
-                    <span>{item.name}</span>
-                    <ArrowUpRight className="w-4 h-4 text-slate-500" />
-                  </motion.a>
-                ))}
+                {NAV_ITEMS.map((item, idx) => {
+                  const isActive =
+                    item.href === "/"
+                      ? pathname === "/"
+                      : pathname?.startsWith(item.href);
+
+                  return (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 * idx, duration: 0.3 }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`flex items-center justify-between text-xl font-editorial tracking-[0.1em] border-b border-white/5 pb-3 transition-colors ${
+                          isActive ? "text-[#c9a86a]" : "text-slate-200 hover:text-[#c9a86a]"
+                        }`}
+                      >
+                        <span>{item.name}</span>
+                        <ArrowUpRight className="w-4 h-4 text-slate-500" />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </nav>
             </div>
 
@@ -197,14 +186,14 @@ export default function Navbar() {
                 </span>
               </div>
 
-              <a
-                href="#contact"
-                onClick={(e) => scrollToSection(e, "#contact")}
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-3.5 rounded-sm bg-gradient-to-r from-[#c9a86a] to-[#b38f51] text-[#05070a] font-bold text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#c9a86a]/20"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Let&apos;s Connect</span>
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
